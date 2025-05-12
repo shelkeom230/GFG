@@ -7,19 +7,20 @@ class Solution:
     # Function to sort an array of 0s, 1s, and 2s
     def sort012(self, arr):
         # code here
-        cnt0=0
-        cnt1=0
-        cnt2=0
+        # dutch national flag algorithm
         n=len(arr)
+        low,mid,high=0,0,n-1
         
-        for i in range(n):
-            cnt0+=1 if arr[i]==0 else 0
-            cnt1+=1 if arr[i]==1 else 0
-            cnt2+=1 if arr[i]==2 else 0
-        
-        for i in range(cnt0): arr[i]=0
-        for i in range(cnt0,cnt0+cnt1): arr[i]=1
-        for i in range(cnt0+cnt1,n): arr[i]=2
+        while mid<=high:
+            if arr[mid]==0:
+                arr[mid],arr[low]=arr[low],arr[mid]
+                mid+=1
+                low+=1
+            elif arr[mid]==1:
+                mid+=1
+            else:
+                arr[mid],arr[high]=arr[high],arr[mid]
+                high-=1
         return arr 
         
 
