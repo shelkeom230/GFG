@@ -5,26 +5,18 @@ class Solution:
         # code here
         n=len(arr)
         
-        hash={}
-        
+        sn=(n*(n+1))//2
+        s2n=(n*(n+1)*(2*n+1))//6
+        s,s2=0,0
         for ele in arr:
-            if ele in hash:
-                hash[ele]+=1
-            else:
-                hash[ele]=1
+            s+=ele 
+            s2+=(ele*ele)
         
-        for key,val in hash.items():
-            if val==2:
-                A=key 
-                break 
+        val1=s-sn 
+        val2=s2-s2n 
+        val2=val2//val1 
         
-        arr.remove(A)
-        
-        totalSum=n*(n+1)//2
-        currentSum=0
-        for ele in arr:
-            currentSum+=ele 
-        
-        B=totalSum-currentSum 
-        return [A,B]
+        x=(val1+val2)//2 
+        y=val2-x 
+        return [x,y]
 
